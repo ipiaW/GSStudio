@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSStudio - Komunitas Roblox & Discord</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variabel CSS */
+        :root {
+            --primary: #5865F2;
+            --secondary: #0E1C36;
+            --accent: #FF7B31;
+            --light: #F5F5F5;
+            --dark: #121212;
+            --success: #57F287;
+        }
+        
+        /* Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #1a2d67 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        /* Discord Section */
+        .discord-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .discord-info {
+            flex: 1;
+        }
+        
+        .discord-widget {
+            flex: 1;
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+        
+        /* Games Section */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .game-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .game-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .game-info {
+            padding: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+        
+        .testimonial {
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            scroll-snap-align: start;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .discord-container {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>GSStudio</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#features">Layanan</a></li>
+                <li><a href="#discord">Discord</a></li>
+                <li><a href="#games">Game</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Komunitas <span>Roblox</span> & <span>Discord</span> Terbaik</h1>
+            <p>Bergabunglah dengan ribuan pemain Roblox lainnya di server Discord kami. Dapatkan tips, trik, dan teman bermain baru!</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn">Bergabung Sekarang</a>
+                <a href="#games" class="btn btn-accent">Jelajahi Game</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang <span>GSStudio</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>GSStudio adalah komunitas gaming yang berfokus pada pengembangan pengalaman bermain Roblox dan membangun komunitas Discord yang solid. Kami telah berdiri sejak 2018 dan memiliki lebih dari 50.000 anggota aktif.</p>
+                    <p>Misi kami adalah menciptakan lingkungan yang ramah, aman, dan menyenangkan bagi semua pecinta game Roblox. Kami menyelenggarakan event rutin, kompetisi, dan memberikan tempat untuk berbagi kreativitas.</p>
+                    <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://placehold.co/600x400/5865F2/FFFFFF?text=GSStudio+Team" alt="Tim GSStudio">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Layanan <span>Kami</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-roblox"></i>
+                    </div>
+                    <h3>Development Game Roblox</h3>
+                    <p>Kami menawarkan jasa pembuatan game Roblox custom sesuai keinginan Anda dengan kualitas terbaik.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Komunitas Discord</h3>
+                    <p>Bergabung dengan server Discord kami untuk berinteraksi dengan sesama pemain Roblox.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Tutorial & Workshop</h3>
+                    <p>Belajar pengembangan game Roblox melalui tutorial dan workshop yang kami adakan secara rutin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord Section -->
+    <section class="discord" id="discord">
+        <div class="container">
+            <h2 class="section-title">Komunitas <span>Discord</span></h2>
+            <div class="discord-container">
+                <div class="discord-info">
+                    <h3>Bergabunglah dengan Server Discord Kami</h3>
+                    <p>Dapatkan akses ke:</p>
+                    <ul>
+                        <li>Saluran chat untuk berbagai game Roblox</li>
+                        <li>Pemberitahuan update game terbaru</li>
+                        <li>Event eksklusif dan giveaway</li>
+                        <li>Role khusus untuk anggota teraktif</li>
+                        <li>Dukungan teknis dan bantuan</li>
+                    </ul>
+                    <a href="#" class="btn"><i class="fab fa-discord"></i> Join Discord</a>
+                </div>
+                <div class="discord-widget">
+                    <h3>GSStudio Discord Server</h3>
+                    <p>50,000+ Anggota</p>
+                    <p>Online: 2,500+</p>
+                    <div class="online-indicator">
+                        <span class="dot"></span> Server Aktif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games" id="games">
+        <div class="container">
+            <h2 class="section-title">Game <span>Roblox</span> Kami</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://placehold.co/600x400/0E1C36/FFFFFF?text=Adventure+World')"></div>
+                    <div class="game-info">
+                        <h3>Adventure World</h3>
+                        <p>Jelajahi dunia penuh petualangan dan teka-teki yang menantang.</p>
+                        <a href="#" class="btn">Main Sekarang</a>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://placehold.co/600x400/0E1C36/FFFFFF?text=City+Builder')"></div>
+                    <div class="game-info">
+                        <h3>City Builder</h3>
+                        <p>Bangun kota impianmu dan kelola menjadi metropolis yang sukses.</p>
+                        <a href="#" class="btn">Main Sekarang</a>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://placehold.co/600x400/0E1C36/FFFFFF?text=Obby+Challenge')"></div>
+                    <div class="game-info">
+                        <h3>Obby Challenge</h3>
+                        <p>Uji keterampilanmu melalui berbagai rintangan yang menantang.</p>
+                        <a href="#" class="btn">Main Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Apa Kata <span>Mereka</span></h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "GSStudio telah membantu saya belajar membuat game Roblox. Komunitasnya sangat supportive!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Alex</h4>
+                            <p>Game Developer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Server Discord GSStudio adalah tempat terbaik untuk menemukan teman bermain Roblox."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Sarah</h4>
+                            <p>Roblox Player</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Event-event yang diadakan GSStudio selalu seru dan hadiahnya menggiurkan!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Kevin</h4>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GSStudio</h3>
+                    <p>Komunitas Roblox dan Discord terbaik untuk penggemar game.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#features">Layanan</a></li>
+                        <li><a href="#discord">Discord</a></li>
+                        <li><a href="#games">Game</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Game Populer</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Adventure World</a></li>
+                        <li><a href="#">City Builder</a></li>
+                        <li><a href="#">Obby Challenge</a></li>
+                        <li><a href="#">Fantasy RPG</a></li>
+                        <li><a href="#">Racing Extreme</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@gsstudio.com</li>
+                        <li><i class="fab fa-discord"></i> discord.gg/gsstudio</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GSStudio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
