@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GSStudio - Komunitas Roblox Indonesia</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -17,21 +18,12 @@
                     <span>GSStudio</span>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">Tentang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#games" class="nav-link">Game Kami</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#community" class="nav-link">Komunitas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#join" class="nav-link join-btn">Gabung</a>
-                    </li>
+                    <li class="nav-item"><a href="#home" class="nav-link">Beranda</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">Tentang</a></li>
+                    <li class="nav-item"><a href="#games" class="nav-link">Game</a></li>
+                    <li class="nav-item"><a href="#community" class="nav-link">Komunitas</a></li>
+                    <li class="nav-item"><a href="#events" class="nav-link">Acara</a></li>
+                    <li class="nav-item"><a href="#join" class="nav-link btn-primary">Gabung</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -45,11 +37,11 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Selamat Datang di GSStudio</h1>
-            <p>Komunitas Roblox terbesar di Indonesia dengan berbagai pengalaman game seru dan kreatif!</p>
+            <h1>Selamat Datang di <span class="highlight">GSStudio</span></h1>
+            <p>Komunitas Roblox terbesar di Indonesia dengan berbagai game seru dan pertemanan yang menyenangkan!</p>
             <div class="hero-buttons">
-                <a href="#games" class="btn primary">Jelajahi Game</a>
-                <a href="#join" class="btn secondary">Gabung Discord</a>
+                <a href="#join" class="btn-primary">Gabung Sekarang</a>
+                <a href="#games" class="btn-secondary">Jelajahi Game</a>
             </div>
         </div>
         <div class="hero-image">
@@ -60,28 +52,28 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2>Tentang GSStudio</h2>
+            <h2 class="section-title">Tentang <span class="highlight">GSStudio</span></h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>GSStudio adalah komunitas Roblox Indonesia yang didirikan pada tahun 2020. Kami terdiri dari developer, desainer, dan pemain Roblox yang passionate tentang menciptakan pengalaman gaming yang menyenangkan.</p>
-                    <p>Dengan lebih dari 10 game yang telah diluncurkan dan ribuan anggota komunitas, GSStudio terus berkembang menjadi salah satu komunitas Roblox terbesar di Indonesia.</p>
+                    <p>GSStudio adalah komunitas Roblox Indonesia yang didirikan pada tahun 2020. Kami telah berkembang menjadi salah satu komunitas paling aktif dengan lebih dari 50.000 anggota.</p>
+                    <p>Kami menyediakan berbagai pengalaman gaming yang seru, aman, dan menyenangkan untuk semua usia. Dengan moderator yang berpengalaman, kami menjaga komunitas tetap ramah dan positif.</p>
                     <div class="stats">
                         <div class="stat">
-                            <h3>10+</h3>
-                            <p>Game Diluncurkan</p>
-                        </div>
-                        <div class="stat">
                             <h3>50K+</h3>
-                            <p>Anggota Komunitas</p>
+                            <p>Anggota</p>
                         </div>
                         <div class="stat">
-                            <h3>5Jt+</h3>
-                            <p>Kunjungan Game</p>
+                            <h3>15+</h3>
+                            <p>Game</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100+</h3>
+                            <p>Event</p>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="images/about-image.jpg" alt="About GSStudio">
+                    <img src="images/game1.jpg" alt="About GSStudio">
                 </div>
             </div>
         </div>
@@ -90,42 +82,41 @@
     <!-- Games Section -->
     <section id="games" class="games">
         <div class="container">
-            <h2>Game Kami di Roblox</h2>
-            <p class="section-desc">Jelajahi berbagai game seru yang dibuat oleh GSStudio</p>
-            
+            <h2 class="section-title">Game <span class="highlight">Unggulan</span></h2>
             <div class="games-grid">
                 <div class="game-card">
                     <div class="game-image">
-                        <img src="images/game1.jpg" alt="Fantasy Adventure">
+                        <img src="images/game1.jpg" alt="Adventure World">
                     </div>
                     <div class="game-info">
-                        <h3>Fantasy Adventure</h3>
-                        <p>Petualangan epik di dunia fantasi penuh dengan misteri dan tantangan.</p>
-                        <a href="https://www.roblox.com/games/123456789/Fantasy-Adventure" target="_blank" class="game-link">Main Sekarang</a>
+                        <h3>Adventure World</h3>
+                        <p>Jelajahi dunia penuh misteri dan kumpulkan harta karun legendaris.</p>
+                        <a href="#" class="btn-play">Main Sekarang <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                
                 <div class="game-card">
                     <div class="game-image">
-                        <img src="images/game2.jpg" alt="City Life Simulator">
+                        <img src="images/game2.jpg" alt="City Life">
                     </div>
                     <div class="game-info">
-                        <h3>City Life Simulator</h3>
-                        <p>Simulasi kehidupan kota dimana kamu bisa bekerja, bersosialisasi, dan membangun rumah.</p>
-                        <a href="https://www.roblox.com/games/987654321/City-Life-Simulator" target="_blank" class="game-link">Main Sekarang</a>
+                        <h3>City Life</h3>
+                        <p>Bangun kota impianmu dan jalani kehidupan virtual yang seru.</p>
+                        <a href="#" class="btn-play">Main Sekarang <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                
                 <div class="game-card">
                     <div class="game-image">
-                        <img src="images/game3.jpg" alt="Space Explorers">
+                        <img src="images/game3.jpg" alt="Battle Arena">
                     </div>
                     <div class="game-info">
-                        <h3>Space Explorers</h3>
-                        <p>Jelajahi galaksi yang luas, temukan planet baru, dan hadapi alien di petualangan antariksa.</p>
-                        <a href="https://www.roblox.com/games/567891234/Space-Explorers" target="_blank" class="game-link">Main Sekarang</a>
+                        <h3>Battle Arena</h3>
+                        <p>Bertarung dengan pemain lain di arena pertempuran epik.</p>
+                        <a href="#" class="btn-play">Main Sekarang <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+            </div>
+            <div class="view-all">
+                <a href="#" class="btn-secondary">Lihat Semua Game</a>
             </div>
         </div>
     </section>
@@ -133,47 +124,87 @@
     <!-- Community Section -->
     <section id="community" class="community">
         <div class="container">
-            <h2>Komunitas GSStudio</h2>
-            <p class="section-desc">Bergabunglah dengan komunitas kami yang ramah dan aktif</p>
-            
+            <h2 class="section-title">Komunitas <span class="highlight">Kami</span></h2>
             <div class="community-content">
-                <div class="discord-card">
-                    <div class="discord-icon">
-                        <i class="fab fa-discord"></i>
-                    </div>
-                    <h3>Discord GSStudio</h3>
-                    <p>Bergabunglah dengan server Discord kami untuk berinteraksi dengan anggota komunitas lainnya, mengikuti event, dan mendapatkan informasi terbaru.</p>
-                    <a href="https://discord.gg/gsstudio" target="_blank" class="discord-link">Gabung Discord</a>
-                </div>
-                
-                <div class="community-features">
-                    <div class="feature">
-                        <div class="feature-icon">
+                <div class="community-text">
+                    <p>Bergabunglah dengan komunitas kami yang ramah dan aktif. Dapatkan teman baru, ikuti event seru, dan bagikan pengalaman gamingmu!</p>
+                    <div class="community-features">
+                        <div class="feature">
                             <i class="fas fa-calendar-alt"></i>
+                            <h4>Event Mingguan</h4>
+                            <p>Event seru setiap minggu dengan hadiah menarik</p>
                         </div>
-                        <div class="feature-text">
-                            <h4>Event Rutin</h4>
-                            <p>Ikuti event mingguan dan bulanan dengan hadiah Robux dan item eksklusif.</p>
+                        <div class="feature">
+                            <i class="fas fa-trophy"></i>
+                            <h4>Kompetisi</h4>
+                            <p>Turnamen dengan prize pool jutaan rupiah</p>
                         </div>
-                    </div>
-                    
-                    <div class="feature">
-                        <div class="feature-icon">
+                        <div class="feature">
                             <i class="fas fa-users"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h4>Komunitas Aktif</h4>
-                            <p>Lebih dari 50.000 anggota aktif siap berbagi pengalaman dan membantu.</p>
+                            <h4>Kelompok Bermain</h4>
+                            <p>Temukan kelompok bermain sesuai minatmu</p>
                         </div>
                     </div>
-                    
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-gem"></i>
+                </div>
+                <div class="discord-widget">
+                    <h3>Gabung Discord Kami</h3>
+                    <p>Bergabunglah dengan server Discord kami untuk berinteraksi dengan anggota lainnya</p>
+                    <a href="https://discord.gg/example" class="btn-discord" target="_blank">
+                        <i class="fab fa-discord"></i> Join Discord
+                    </a>
+                    <div class="discord-stats">
+                        <div class="online-members">
+                            <span class="status-dot"></span>
+                            <span>2,450 Online</span>
                         </div>
-                        <div class="feature-text">
-                            <h4>Keuntungan Eksklusif</h4>
-                            <p>Akses ke item game eksklusif, beta tester, dan konten spesial untuk anggota.</p>
+                        <div class="total-members">
+                            <i class="fas fa-user-friends"></i>
+                            <span>50,321 Members</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Apa Kata <span class="highlight">Mereka</span></h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"GSStudio adalah komunitas terbaik yang pernah saya ikuti. Semua anggota sangat ramah dan eventnya selalu seru!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/avatar1.png" alt="User Avatar">
+                        <div class="author-info">
+                            <h4>BudiSantoso</h4>
+                            <p>Member sejak 2021</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Saya sudah mencoba banyak game Roblox, tapi yang dibuat GSStudio selalu punya keunikan tersendiri. Keren!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/avatar2.png" alt="User Avatar">
+                        <div class="author-info">
+                            <h4>GamerGirl99</h4>
+                            <p>Member sejak 2020</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Moderatornya sangat membantu dan responsif. Komunitasnya sangat nyaman untuk semua usia."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/avatar3.png" alt="User Avatar">
+                        <div class="author-info">
+                            <h4>RajaGame</h4>
+                            <p>Member sejak 2022</p>
                         </div>
                     </div>
                 </div>
@@ -184,87 +215,67 @@
     <!-- Join Section -->
     <section id="join" class="join">
         <div class="container">
-            <h2>Bergabung dengan GSStudio</h2>
-            <p class="section-desc">Jadilah bagian dari komunitas Roblox terbaik Indonesia</p>
-            
             <div class="join-content">
-                <div class="join-form">
-                    <h3>Daftar Newsletter</h3>
-                    <p>Dapatkan update terbaru tentang game, event, dan konten eksklusif</p>
-                    <form id="newsletter-form">
-                        <input type="email" placeholder="Email Anda" required>
-                        <input type="text" placeholder="Username Roblox">
-                        <button type="submit">Daftar Sekarang</button>
-                    </form>
-                </div>
-                
-                <div class="join-links">
-                    <h3>Temukan Kami Di</h3>
-                    <div class="social-links">
-                        <a href="https://discord.gg/gsstudio" target="_blank" class="social-link discord">
-                            <i class="fab fa-discord"></i>
-                            <span>Discord</span>
-                        </a>
-                        <a href="https://www.roblox.com/groups/1234567/GSStudio" target="_blank" class="social-link roblox">
-                            <i class="fas fa-gamepad"></i>
-                            <span>Roblox Group</span>
-                        </a>
-                        <a href="https://github.com/GSStudio" target="_blank" class="social-link github">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
+                <h2>Siap Bergabung dengan <span class="highlight">GSStudio</span>?</h2>
+                <p>Jadilah bagian dari komunitas Roblox terbaik di Indonesia. Dapatkan pengalaman gaming yang tak terlupakan!</p>
+                <div class="join-buttons">
+                    <a href="https://www.roblox.com/groups/example" class="btn-primary" target="_blank">
+                        <i class="fas fa-gamepad"></i> Gabung Grup Roblox
+                    </a>
+                    <a href="https://discord.gg/example" class="btn-discord" target="_blank">
+                        <i class="fab fa-discord"></i> Gabung Discord
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
+                <div class="footer-section">
+                    <div class="footer-logo">
                         <img src="images/logo.png" alt="GSStudio Logo">
                         <span>GSStudio</span>
                     </div>
-                    <p>Komunitas Roblox Indonesia yang berfokus pada pembuatan pengalaman gaming terbaik.</p>
+                    <p>Komunitas Roblox Indonesia terbaik dengan pengalaman gaming yang seru dan menyenangkan.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Tautan Cepat</h4>
-                        <ul>
-                            <li><a href="#home">Beranda</a></li>
-                            <li><a href="#about">Tentang</a></li>
-                            <li><a href="#games">Game</a></li>
-                            <li><a href="#community">Komunitas</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Sumber Daya</h4>
-                        <ul>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Panduan</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Dukungan</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="#">Syarat & Ketentuan</a></li>
-                            <li><a href="#">Kebijakan Privasi</a></li>
-                            <li><a href="#">Kebijakan Cookie</a></li>
-                        </ul>
-                    </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#games">Game</a></li>
+                        <li><a href="#community">Komunitas</a></li>
+                        <li><a href="#events">Acara</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Game Populer</h3>
+                    <ul>
+                        <li><a href="#">Adventure World</a></li>
+                        <li><a href="#">City Life</a></li>
+                        <li><a href="#">Battle Arena</a></li>
+                        <li><a href="#">Fantasy Quest</a></li>
+                        <li><a href="#">Racing Extreme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-envelope"></i> info@gsstudio.com</p>
+                    <p><i class="fab fa-discord"></i> discord.gg/gsstudio</p>
+                    <p><i class="fas fa-gamepad"></i> roblox.com/gsstudio</p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2023 GSStudio. All rights reserved. Roblox is a registered trademark of Roblox Corporation.</p>
+                <p>&copy; 2023 GSStudio. All rights reserved.</p>
             </div>
         </div>
     </footer>
