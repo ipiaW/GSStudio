@@ -3,283 +3,838 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSStudio - Komunitas Roblox Indonesia</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Forum Community</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --text-color: #333;
+            --bg-color: #f5f8fa;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Auth Buttons */
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        /* Forum List */
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .forum-list {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .forum-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .forum-item:last-child {
+            border-bottom: none;
+        }
+
+        .forum-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .forum-info {
+            flex: 1;
+        }
+
+        .forum-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .forum-title a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .forum-title a:hover {
+            color: var(--secondary-color);
+        }
+
+        .forum-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .forum-stats {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Thread List */
+        .thread-list {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .thread-header {
+            padding: 1rem;
+            background-color: var(--light-color);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .thread-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+        }
+
+        .thread-item:last-child {
+            border-bottom: none;
+        }
+
+        .thread-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+
+        .thread-content {
+            flex: 1;
+        }
+
+        .thread-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .thread-title a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .thread-title a:hover {
+            color: var(--secondary-color);
+        }
+
+        .thread-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .thread-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .thread-stats {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+            min-width: 80px;
+        }
+
+        /* Forms */
+        .form-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .forum-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .forum-header .btn {
+                margin-top: 1rem;
+                align-self: flex-end;
+            }
+            
+            .thread-item {
+                flex-direction: column;
+            }
+            
+            .thread-stats {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+    </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
     <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <img src="images/logo.png" alt="GSStudio Logo">
-                    <span>GSStudio</span>
-                </div>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link">Beranda</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">Tentang</a></li>
-                    <li class="nav-item"><a href="#games" class="nav-link">Game</a></li>
-                    <li class="nav-item"><a href="#community" class="nav-link">Komunitas</a></li>
-                    <li class="nav-item"><a href="#events" class="nav-link">Acara</a></li>
-                    <li class="nav-item"><a href="#join" class="nav-link btn-primary">Gabung</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">Forum Community</a>
             </div>
-        </nav>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="#">Members</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="registerBtn">Register</button>
+            </div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Selamat Datang di <span class="highlight">GSStudio</span></h1>
-            <p>Komunitas Roblox terbesar di Indonesia dengan berbagai game seru dan pertemanan yang menyenangkan!</p>
-            <div class="hero-buttons">
-                <a href="#join" class="btn-primary">Gabung Sekarang</a>
-                <a href="#games" class="btn-secondary">Jelajahi Game</a>
-            </div>
+    <div class="container main-content">
+        <div class="forum-header">
+            <h1>Forum Discussions</h1>
+            <button class="btn btn-primary" id="newThreadBtn">New Thread</button>
         </div>
-        <div class="hero-image">
-            <img src="images/hero-bg.jpg" alt="Roblox Games">
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Tentang <span class="highlight">GSStudio</span></h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>GSStudio adalah komunitas Roblox Indonesia yang didirikan pada tahun 2020. Kami telah berkembang menjadi salah satu komunitas paling aktif dengan lebih dari 50.000 anggota.</p>
-                    <p>Kami menyediakan berbagai pengalaman gaming yang seru, aman, dan menyenangkan untuk semua usia. Dengan moderator yang berpengalaman, kami menjaga komunitas tetap ramah dan positif.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <h3>50K+</h3>
-                            <p>Anggota</p>
-                        </div>
-                        <div class="stat">
-                            <h3>15+</h3>
-                            <p>Game</p>
-                        </div>
-                        <div class="stat">
-                            <h3>100+</h3>
-                            <p>Event</p>
-                        </div>
-                    </div>
+        <div class="forum-list">
+            <div class="forum-item">
+                <div class="forum-icon">📝</div>
+                <div class="forum-info">
+                    <div class="forum-title"><a href="#">General Discussion</a></div>
+                    <div class="forum-desc">Talk about anything related to our community</div>
                 </div>
-                <div class="about-image">
-                    <img src="images/game1.jpg" alt="About GSStudio">
+                <div class="forum-stats">
+                    <div>Threads: 24</div>
+                    <div>Posts: 128</div>
+                </div>
+            </div>
+            <div class="forum-item">
+                <div class="forum-icon">💻</div>
+                <div class="forum-info">
+                    <div class="forum-title"><a href="#">Technology</a></div>
+                    <div class="forum-desc">Discuss the latest in technology</div>
+                </div>
+                <div class="forum-stats">
+                    <div>Threads: 18</div>
+                    <div>Posts: 96</div>
+                </div>
+            </div>
+            <div class="forum-item">
+                <div class="forum-icon">🎮</div>
+                <div class="forum-info">
+                    <div class="forum-title"><a href="#">Gaming</a></div>
+                    <div class="forum-desc">Video games and gaming culture</div>
+                </div>
+                <div class="forum-stats">
+                    <div>Threads: 32</div>
+                    <div>Posts: 187</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Games Section -->
-    <section id="games" class="games">
-        <div class="container">
-            <h2 class="section-title">Game <span class="highlight">Unggulan</span></h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-image">
-                        <img src="images/game1.png" alt="Adventure World">
-                    </div>
-                    <div class="game-info">
-                        <h3>Adventure World</h3>
-                        <p>Jelajahi dunia penuh misteri dan kumpulkan harta karun legendaris.</p>
-                        <a href="#" class="btn-play">Main Sekarang <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        <div class="thread-list">
+            <div class="thread-header">
+                <h2>Recent Threads</h2>
+                <div>Sort by: Newest</div>
+            </div>
+            <div class="thread-item">
+                <div class="thread-avatar">J</div>
+                <div class="thread-content">
+                    <div class="thread-title"><a href="#">Welcome to our new forum platform!</a></div>
+                    <div class="thread-meta">Posted by <strong>JohnDoe</strong> • 2 hours ago</div>
+                    <div class="thread-excerpt">Hello everyone! Welcome to our new forum. Feel free to introduce yourself and start new discussions...</div>
                 </div>
-                <div class="game-card">
-                    <div class="game-image">
-                        <img src="images/game2.jpg" alt="City Life">
-                    </div>
-                    <div class="game-info">
-                        <h3>City Life</h3>
-                        <p>Bangun kota impianmu dan jalani kehidupan virtual yang seru.</p>
-                        <a href="#" class="btn-play">Main Sekarang <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <div class="game-image">
-                        <img src="images/game3.jpg" alt="Battle Arena">
-                    </div>
-                    <div class="game-info">
-                        <h3>Battle Arena</h3>
-                        <p>Bertarung dengan pemain lain di arena pertempuran epik.</p>
-                        <a href="#" class="btn-play">Main Sekarang <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="thread-stats">
+                    <div>Replies: 12</div>
+                    <div>Views: 84</div>
                 </div>
             </div>
-            <div class="view-all">
-                <a href="#" class="btn-secondary">Lihat Semua Game</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Section -->
-    <section id="community" class="community">
-        <div class="container">
-            <h2 class="section-title">Komunitas <span class="highlight">Kami</span></h2>
-            <div class="community-content">
-                <div class="community-text">
-                    <p>Bergabunglah dengan komunitas kami yang ramah dan aktif. Dapatkan teman baru, ikuti event seru, dan bagikan pengalaman gamingmu!</p>
-                    <div class="community-features">
-                        <div class="feature">
-                            <i class="fas fa-calendar-alt"></i>
-                            <h4>Event Mingguan</h4>
-                            <p>Event seru setiap minggu dengan hadiah menarik</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-trophy"></i>
-                            <h4>Kompetisi</h4>
-                            <p>Turnamen dengan prize pool jutaan rupiah</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-users"></i>
-                            <h4>Kelompok Bermain</h4>
-                            <p>Temukan kelompok bermain sesuai minatmu</p>
-                        </div>
-                    </div>
+            <div class="thread-item">
+                <div class="thread-avatar">A</div>
+                <div class="thread-content">
+                    <div class="thread-title"><a href="#">What's your favorite programming language?</a></div>
+                    <div class="thread-meta">Posted by <strong>AliceSmith</strong> • 5 hours ago</div>
+                    <div class="thread-excerpt">I'm curious to know what programming languages everyone is using these days and why...</div>
                 </div>
-                <div class="discord-widget">
-                    <h3>Gabung Discord Kami</h3>
-                    <p>Bergabunglah dengan server Discord kami untuk berinteraksi dengan anggota lainnya</p>
-                    <a href="https://discord.gg/example" class="btn-discord" target="_blank">
-                        <i class="fab fa-discord"></i> Join Discord
-                    </a>
-                    <div class="discord-stats">
-                        <div class="online-members">
-                            <span class="status-dot"></span>
-                            <span>2,450 Online</span>
-                        </div>
-                        <div class="total-members">
-                            <i class="fas fa-user-friends"></i>
-                            <span>50,321 Members</span>
-                        </div>
-                    </div>
+                <div class="thread-stats">
+                    <div>Replies: 24</div>
+                    <div>Views: 132</div>
+                </div>
+            </div>
+            <div class="thread-item">
+                <div class="thread-avatar">M</div>
+                <div class="thread-content">
+                    <div class="thread-title"><a href="#">Upcoming games to look forward to</a></div>
+                    <div class="thread-meta">Posted by <strong>MikeGamer</strong> • 1 day ago</div>
+                    <div class="thread-excerpt">There are so many great games coming out this year. Which ones are you most excited about?...</div>
+                </div>
+                <div class="thread-stats">
+                    <div>Replies: 18</div>
+                    <div>Views: 97</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Apa Kata <span class="highlight">Mereka</span></h2>
-            <div class="testimonials-container">
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"GSStudio adalah komunitas terbaik yang pernah saya ikuti. Semua anggota sangat ramah dan eventnya selalu seru!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/avatar1.png" alt="User Avatar">
-                        <div class="author-info">
-                            <h4>BudiSantoso</h4>
-                            <p>Member sejak 2021</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"Saya sudah mencoba banyak game Roblox, tapi yang dibuat GSStudio selalu punya keunikan tersendiri. Keren!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/avatar2.png" alt="User Avatar">
-                        <div class="author-info">
-                            <h4>GamerGirl99</h4>
-                            <p>Member sejak 2020</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"Moderatornya sangat membantu dan responsif. Komunitasnya sangat nyaman untuk semua usia."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/avatar3.png" alt="User Avatar">
-                        <div class="author-info">
-                            <h4>RajaGame</h4>
-                            <p>Member sejak 2022</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Login</h2>
+                <button class="close">&times;</button>
             </div>
-        </div>
-    </section>
-
-    <!-- Join Section -->
-    <section id="join" class="join">
-        <div class="container">
-            <div class="join-content">
-                <h2>Siap Bergabung dengan <span class="highlight">GSStudio</span>?</h2>
-                <p>Jadilah bagian dari komunitas Roblox terbaik di Indonesia. Dapatkan pengalaman gaming yang tak terlupakan!</p>
-                <div class="join-buttons">
-                    <a href="https://www.roblox.com/groups/example" class="btn-primary" target="_blank">
-                        <i class="fas fa-gamepad"></i> Gabung Grup Roblox
-                    </a>
-                    <a href="https://discord.gg/example" class="btn-discord" target="_blank">
-                        <i class="fab fa-discord"></i> Gabung Discord
-                    </a>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" class="form-control" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Register</h2>
+                <button class="close">&times;</button>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Thread Modal -->
+    <div class="modal" id="newThreadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create New Thread</h2>
+                <button class="close">&times;</button>
+            </div>
+            <form id="newThreadForm">
+                <div class="form-group">
+                    <label for="threadTitle">Title</label>
+                    <input type="text" id="threadTitle" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="threadContent">Content</label>
+                    <textarea id="threadContent" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="threadForum">Forum</label>
+                    <select id="threadForum" class="form-control" required>
+                        <option value="">Select a forum</option>
+                        <option value="general">General Discussion</option>
+                        <option value="technology">Technology</option>
+                        <option value="gaming">Gaming</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Thread</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="images/logo.png" alt="GSStudio Logo">
-                        <span>GSStudio</span>
-                    </div>
-                    <p>Komunitas Roblox Indonesia terbaik dengan pengalaman gaming yang seru dan menyenangkan.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
+                    <h3>Forum Community</h3>
+                    <p>A place to discuss, share, and connect with like-minded people.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Tautan Cepat</h3>
+                    <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang</a></li>
-                        <li><a href="#games">Game</a></li>
-                        <li><a href="#community">Komunitas</a></li>
-                        <li><a href="#events">Acara</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Forums</a></li>
+                        <li><a href="#">Members</a></li>
+                        <li><a href="#">Help</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Game Populer</h3>
+                    <h3>Contact Us</h3>
                     <ul>
-                        <li><a href="#">Adventure World</a></li>
-                        <li><a href="#">City Life</a></li>
-                        <li><a href="#">Battle Arena</a></li>
-                        <li><a href="#">Fantasy Quest</a></li>
-                        <li><a href="#">Racing Extreme</a></li>
+                        <li><a href="#">Email</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Kontak</h3>
-                    <p><i class="fas fa-envelope"></i> info@gsstudio.com</p>
-                    <p><i class="fab fa-discord"></i> discord.gg/gsstudio</p>
-                    <p><i class="fas fa-gamepad"></i> roblox.com/gsstudio</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 GSStudio. All rights reserved.</p>
+                <p>&copy; 2023 Forum Community. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const newThreadBtn = document.getElementById('newThreadBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const newThreadModal = document.getElementById('newThreadModal');
+        const closeButtons = document.querySelectorAll('.close');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const newThreadForm = document.getElementById('newThreadForm');
+
+        // Show Modals
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        registerBtn.addEventListener('click', () => {
+            registerModal.style.display = 'flex';
+        });
+
+        newThreadBtn.addEventListener('click', () => {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                alert('Please login to create a new thread');
+                loginModal.style.display = 'flex';
+                return;
+            }
+            newThreadModal.style.display = 'flex';
+        });
+
+        // Close Modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+                newThreadModal.style.display = 'none';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) loginModal.style.display = 'none';
+            if (e.target === registerModal) registerModal.style.display = 'none';
+            if (e.target === newThreadModal) newThreadModal.style.display = 'none';
+        });
+
+        // Form Submissions
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simple validation
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                alert('Login successful!');
+                loginModal.style.display = 'none';
+                updateAuthButtons();
+            } else {
+                alert('Invalid username or password');
+            }
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            // Simple validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check if username already exists
+            if (users.some(user => user.username === username)) {
+                alert('Username already exists');
+                return;
+            }
+            
+            // Create new user
+            const newUser = { username, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            alert('Registration successful! You are now logged in.');
+            registerModal.style.display = 'none';
+            updateAuthButtons();
+        });
+
+        newThreadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('threadTitle').value;
+            const content = document.getElementById('threadContent').value;
+            const forum = document.getElementById('threadForum').value;
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (!currentUser) {
+                alert('Please login to create a thread');
+                return;
+            }
+            
+            // Create new thread
+            const threads = JSON.parse(localStorage.getItem('threads')) || [];
+            const newThread = {
+                id: Date.now(),
+                title,
+                content,
+                forum,
+                author: currentUser.username,
+                date: new Date().toISOString(),
+                replies: 0,
+                views: 0
+            };
+            
+            threads.unshift(newThread);
+            localStorage.setItem('threads', JSON.stringify(threads));
+            
+            alert('Thread created successfully!');
+            newThreadModal.style.display = 'none';
+            newThreadForm.reset();
+            
+            // In a real app, you would update the thread list here
+        });
+
+        // Update authentication buttons based on login status
+        function updateAuthButtons() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const authButtons = document.querySelector('.auth-buttons');
+            
+            if (currentUser) {
+                authButtons.innerHTML = `
+                    <span style="margin-right: 10px;">Welcome, ${currentUser.username}</span>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                `;
+                document.getElementById('logoutBtn').addEventListener('click', logout);
+            } else {
+                authButtons.innerHTML = `
+                    <button class="btn btn-outline" id="loginBtn">Login</button>
+                    <button class="btn btn-primary" id="registerBtn">Register</button>
+                `;
+                // Reattach event listeners
+                document.getElementById('loginBtn').addEventListener('click', () => loginModal.style.display = 'flex');
+                document.getElementById('registerBtn').addEventListener('click', () => registerModal.style.display = 'flex');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            updateAuthButtons();
+            alert('You have been logged out');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize localStorage if empty
+            if (!localStorage.getItem('users')) {
+                localStorage.setItem('users', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('threads')) {
+                localStorage.setItem('threads', JSON.stringify([]));
+            }
+            
+            updateAuthButtons();
+            
+            // Load threads from localStorage and display them
+            const threads = JSON.parse(localStorage.getItem('threads'));
+            if (threads.length > 0) {
+                // In a real app, you would update the thread list here
+            }
+        });
+    </script>
 </body>
 </html>
