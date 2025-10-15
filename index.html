@@ -3,468 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum Community</title>
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #64748b;
-            --light-color: #f8fafc;
-            --dark-color: #1e293b;
-            --success-color: #22c55e;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f1f5f9;
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-        
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn {
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-        
-        .hero {
-            padding: 60px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-color), #1d4ed8);
-            color: white;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .forum-container {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .categories {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .categories h2 {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .categories ul {
-            list-style: none;
-        }
-        
-        .categories ul li {
-            margin-bottom: 10px;
-        }
-        
-        .categories ul li a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-        
-        .categories ul li a:hover {
-            background-color: #f1f5f9;
-            color: var(--primary-color);
-        }
-        
-        .threads {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .threads-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .thread-list {
-            list-style: none;
-        }
-        
-        .thread-item {
-            padding: 15px;
-            border-bottom: 1px solid #e2e8f0;
-            display: grid;
-            grid-template-columns: 50px 1fr 100px;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .thread-item:last-child {
-            border-bottom: none;
-        }
-        
-        .thread-info h3 {
-            margin-bottom: 5px;
-        }
-        
-        .thread-info h3 a {
-            color: var(--dark-color);
-            text-decoration: none;
-        }
-        
-        .thread-info h3 a:hover {
-            color: var(--primary-color);
-        }
-        
-        .thread-meta {
-            display: flex;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-        }
-        
-        .thread-meta span {
-            margin-right: 15px;
-        }
-        
-        .thread-stats {
-            text-align: center;
-        }
-        
-        .thread-stat {
-            display: block;
-            font-size: 0.9rem;
-        }
-        
-        .thread-stat.count {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-        
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-section p {
-            margin-bottom: 10px;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #334155;
-        }
-        
-        @media (max-width: 768px) {
-            .forum-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin: 15px 0;
-            }
-            
-            .auth-buttons {
-                margin-top: 15px;
-            }
-        }
-    </style>
+    <title>TOP UP GAMES - Cepat & Aman</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
+    <!-- Navbar -->
+    <nav class="navbar">
         <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">DevForum</a>
-                
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Categories</a></li>
-                        <li><a href="#">Members</a></li>
-                        <li><a href="#">Help</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="auth-buttons">
-                    <button class="btn btn-outline">Login</button>
-                    <button class="btn btn-primary">Register</button>
-                </div>
+            <a href="#" class="logo">TOPUP<span>GAMES</span></a>
+            <ul class="nav-links">
+                <li><a href="#games">Game</a></li>
+                <li><a href="#how">Cara Top Up</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li class="cart-icon">
+                    <a href="#"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </header>
-    
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Welcome to Developer Forum</h1>
-            <p>A community where developers learn, share, and connect. Join thousands of developers discussing coding topics, sharing knowledge, and helping each other.</p>
-            <button class="btn btn-primary">Join Our Community</button>
+            <div class="hero-content">
+                <h1>Top Up Game Cepat & Aman</h1>
+                <p>Top up game favoritmu dengan mudah dan aman. Proses instan hanya dalam hitungan detik!</p>
+                <a href="#games" class="btn-primary">Mulai Top Up</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/500x300/4a6cf7/ffffff?text=Game+Top+Up" alt="Top Up Games">
+            </div>
         </div>
     </section>
-    
-    <div class="container">
-        <div class="forum-container">
-            <div class="categories">
-                <h2>Categories</h2>
-                <ul>
-                    <li><a href="#">All Topics</a></li>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Mobile Development</a></li>
-                    <li><a href="#">Databases</a></li>
-                    <li><a href="#">DevOps</a></li>
-                    <li><a href="#">Cloud Computing</a></li>
-                    <li><a href="#">Security</a></li>
-                    <li><a href="#">Career Advice</a></li>
-                </ul>
-            </div>
-            
-            <div class="threads">
-                <div class="threads-header">
-                    <h2>Recent Discussions</h2>
-                    <button class="btn btn-primary">New Thread</button>
+
+    <!-- Game Selection -->
+    <section id="games" class="games-section">
+        <div class="container">
+            <h2>Pilih Game</h2>
+            <div class="games-grid">
+                <div class="game-card" onclick="selectGame('Mobile Legends', this)">
+                    <img src="https://via.placeholder.com/150/4a6cf7/ffffff?text=ML" alt="Mobile Legends">
+                    <h3>Mobile Legends</h3>
                 </div>
-                
-                <ul class="thread-list">
-                    <li class="thread-item">
-                        <div class="avatar">JS</div>
-                        <div class="thread-info">
-                            <h3><a href="#">How to optimize React performance for large applications?</a></h3>
-                            <div class="thread-meta">
-                                <span class="thread-author">By: john_doe</span>
-                                <span class="thread-time">2 hours ago</span>
-                                <span class="thread-category">Web Development</span>
-                            </div>
-                        </div>
-                        <div class="thread-stats">
-                            <span class="thread-stat count">24</span>
-                            <span class="thread-stat">replies</span>
-                        </div>
-                    </li>
-                    
-                    <li class="thread-item">
-                        <div class="avatar">DB</div>
-                        <div class="thread-info">
-                            <h3><a href="#">MySQL vs PostgreSQL for large scale applications</a></h3>
-                            <div class="thread-meta">
-                                <span class="thread-author">By: data_expert</span>
-                                <span class="thread-time">5 hours ago</span>
-                                <span class="thread-category">Databases</span>
-                            </div>
-                        </div>
-                        <div class="thread-stats">
-                            <span class="thread-stat count">42</span>
-                            <span class="thread-stat">replies</span>
-                        </div>
-                    </li>
-                    
-                    <li class="thread-item">
-                        <div class="avatar">Py</div>
-                        <div class="thread-info">
-                            <h3><a href="#">Best practices for Python API development with FastAPI</a></h3>
-                            <div class="thread-meta">
-                                <span class="thread-author">By: python_dev</span>
-                                <span class="thread-time">Yesterday</span>
-                                <span class="thread-category">Web Development</span>
-                            </div>
-                        </div>
-                        <div class="thread-stats">
-                            <span class="thread-stat count">18</span>
-                            <span class="thread-stat">replies</span>
-                        </div>
-                    </li>
-                    
-                    <li class="thread-item">
-                        <div class="avatar">CI</div>
-                        <div class="thread-info">
-                            <h3><a href="#">Setting up CI/CD pipeline with GitHub Actions</a></h3>
-                            <div class="thread-meta">
-                                <span class="thread-author">By: devops_guru</span>
-                                <span class="thread-time">2 days ago</span>
-                                <span class="thread-category">DevOps</span>
-                            </div>
-                        </div>
-                        <div class="thread-stats">
-                            <span class="thread-stat count">31</span>
-                            <span class="thread-stat">replies</span>
-                        </div>
-                    </li>
-                </ul>
+                <div class="game-card" onclick="selectGame('Free Fire', this)">
+                    <img src="https://via.placeholder.com/150/ff6b6b/ffffff?text=FF" alt="Free Fire">
+                    <h3>Free Fire</h3>
+                </div>
+                <div class="game-card" onclick="selectGame('PUBG Mobile', this)">
+                    <img src="https://via.placeholder.com/150/2ecc71/ffffff?text=PUBG" alt="PUBG Mobile">
+                    <h3>PUBG Mobile</h3>
+                </div>
+                <div class="game-card" onclick="selectGame('Valorant', this)">
+                    <img src="https://via.placeholder.com/150/9b59b6/ffffff?text=VAL" alt="Valorant">
+                    <h3>Valorant</h3>
+                </div>
+                <div class="game-card" onclick="selectGame('Genshin Impact', this)">
+                    <img src="https://via.placeholder.com/150/3498db/ffffff?text=GI" alt="Genshin Impact">
+                    <h3>Genshin Impact</h3>
+                </div>
+                <div class="game-card" onclick="selectGame('Roblox', this)">
+                    <img src="https://via.placeholder.com/150/e74c3c/ffffff?text=RB" alt="Roblox">
+                    <h3>Roblox</h3>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <footer>
+    </section>
+
+    <!-- Top Up Form -->
+    <section class="topup-form">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About DevForum</h3>
-                    <p>A community of developers helping each other to learn and grow in their careers.</p>
-                    <p>Founded in 2023, we've grown to thousands of members worldwide.</p>
+            <h2 id="selected-game">Pilih Game Terlebih Dahulu</h2>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="user-id">User ID</label>
+                    <input type="text" id="user-id" placeholder="Masukkan User ID">
+                </div>
+                <div class="form-group">
+                    <label for="zone-id">Zone ID (Jika Ada)</label>
+                    <input type="text" id="zone-id" placeholder="Masukkan Zone ID">
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <p><a href="#">Terms of Service</a></p>
-                    <p><a href="#">Privacy Policy</a></p>
-                    <p><a href="#">Community Guidelines</a></p>
-                    <p><a href="#">Help Center</a></p>
+                <div class="amount-section">
+                    <h3>Pilih Nominal</h3>
+                    <div class="amount-grid" id="amount-options">
+                        <!-- Amount options will be populated here -->
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <p>Twitter: <a href="#">@devforum</a></p>
-                    <p>GitHub: <a href="#">github.com/devforum</a></p>
-                    <p>Email: <a href="#">info@devforum.com</a></p>
+                <div class="payment-section">
+                    <h3>Pilih Metode Pembayaran</h3>
+                    <div class="payment-grid" id="payment-options">
+                        <div class="payment-option" onclick="selectPayment(this, 'DANA')">
+                            <i class="fab fa-cc-diners-club"></i> DANA
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this, 'OVO')">
+                            <i class="fab fa-cc-stripe"></i> OVO
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this, 'ShopeePay')">
+                            <i class="fab fa-cc-paypal"></i> ShopeePay
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this, 'Bank Transfer')">
+                            <i class="fas fa-university"></i> Bank Transfer
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-section">
+                    <h3>Ringkasan Pesanan</h3>
+                    <div class="summary-item">
+                        <span>Produk:</span>
+                        <span id="summary-product">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Nominal:</span>
+                        <span id="summary-amount">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Metode Bayar:</span>
+                        <span id="summary-payment">-</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span id="summary-total">Rp 0</span>
+                    </div>
+                    
+                    <button id="checkout-btn" class="btn-primary" disabled>Checkout</button>
                 </div>
             </div>
-            
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how" class="how-section">
+        <div class="container">
+            <h2>Cara Melakukan Top Up</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Pilih Game</h3>
+                    <p>Pilih game yang ingin Anda top up dari daftar game yang tersedia</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Masukkan ID</h3>
+                    <p>Masukkan User ID dan Zone ID (jika diperlukan) dengan benar</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Pilih Nominal</h3>
+                    <p>Pilih nominal top up yang Anda inginkan</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Lakukan Pembayaran</h3>
+                    <p>Pilih metode pembayaran dan selesaikan proses transaksi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>TOPUP<span>GAMES</span></h3>
+                    <p>Platform top up game terpercaya dengan proses instan dan aman.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Game Populer</h4>
+                    <ul>
+                        <li><a href="#">Mobile Legends</a></li>
+                        <li><a href="#">Free Fire</a></li>
+                        <li><a href="#">PUBG Mobile</a></li>
+                        <li><a href="#">Valorant</a></li>
+                        <li><a href="#">Genshin Impact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Tentang Kami</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Kontak</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@topupgames.id</li>
+                        <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                        <li><i class="fab fa-whatsapp"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 DevForum. All rights reserved.</p>
+                <p>&copy; 2023 TOPUPGAMES. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
-        // Simulasi fungsi login/register
-        document.querySelectorAll('.btn-primary, .btn-outline').forEach(button => {
-            if (button.textContent === 'Login' || button.textContent === 'Register') {
-                button.addEventListener('click', function() {
-                    alert('Fungsi login/register akan mengarahkan ke halaman authentication yang terhubung dengan backend dan database.');
-                });
+        // Game data
+        const gameData = {
+            'Mobile Legends': [
+                {id: 1, name: '5 Diamond', price: 10000},
+                {id: 2, name: '50 Diamond', price: 45000},
+                {id: 3, name: '100 Diamond', price: 85000},
+                {id: 4, name: '210 Diamond', price: 160000},
+                {id: 5, name: '325 Diamond', price: 240000},
+                {id: 6, name: '725 Diamond', price: 490000}
+            ],
+            'Free Fire': [
+                {id: 1, name: '10 Coin', price: 5000},
+                {id: 2, name: '50 Coin', price: 20000},
+                {id: 3, name: '100 Coin', price: 38000},
+                {id: 4, name: '200 Coin', price: 70000},
+                {id: 5, name: '500 Coin', price: 160000},
+                {id: 6, name: '1000 Coin', price: 300000}
+            ],
+            'PUBG Mobile': [
+                {id: 1, name: '60 UC', price: 10000},
+                {id: 2, name: '325 UC', price: 45000},
+                {id: 3, name: '660 UC', price: 85000},
+                {id: 4, name: '1800 UC', price: 200000},
+                {id: 5, name: '3850 UC', price: 380000},
+                {id: 6, name: '6800 UC', price: 650000}
+            ],
+            'Valorant': [
+                {id: 1, name: '200 Points', price: 25000},
+                {id: 2, name: '500 Points', price: 55000},
+                {id: 3, name: '1000 Points', price: 100000},
+                {id: 4, name: '2000 Points', price: 190000},
+                {id: 5, name: '3000 Points', price: 275000},
+                {id: 6, name: '5000 Points', price: 450000}
+            ],
+            'Genshin Impact': [
+                {id: 1, name: '60 Primogems', price: 10000},
+                {id: 2, name: '300 Primogems', price: 45000},
+                {id: 3, name: '980 Primogems', price: 135000},
+                {id: 4, name: '1980 Primogems', price: 265000},
+                {id: 5, name: '3280 Primogems', price: 425000},
+                {id: 6, name: '6480 Primogems', price: 825000}
+            ],
+            'Roblox': [
+                {id: 1, name: '80 Robux', price: 15000},
+                {id: 2, name: '200 Robux', price: 35000},
+                {id: 3, name: '450 Robux', price: 70000},
+                {id: 4, name: '1000 Robux', price: 140000},
+                {id: 5, name: '2200 Robux', price: 290000},
+                {id: 6, name: '4500 Robux', price: 550000}
+            ]
+        };
+
+        let selectedGame = '';
+        let selectedAmount = null;
+        let selectedPayment = '';
+
+        function selectGame(gameName, element) {
+            // Reset active class
+            document.querySelectorAll('.game-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Set active class to selected game
+            element.classList.add('active');
+            
+            // Update selected game
+            selectedGame = gameName;
+            document.getElementById('selected-game').textContent = `Top Up ${gameName}`;
+            
+            // Populate amount options
+            const amountOptions = document.getElementById('amount-options');
+            amountOptions.innerHTML = '';
+            
+            gameData[gameName].forEach(item => {
+                const amountDiv = document.createElement('div');
+                amountDiv.className = 'amount-option';
+                amountDiv.innerHTML = `
+                    <div class="amount-name">${item.name}</div>
+                    <div class="amount-price">Rp ${item.price.toLocaleString()}</div>
+                `;
+                amountDiv.onclick = () => selectAmount(item, amountDiv);
+                amountOptions.appendChild(amountDiv);
+            });
+            
+            // Reset selections
+            selectedAmount = null;
+            selectedPayment = '';
+            document.getElementById('summary-product').textContent = gameName;
+            document.getElementById('summary-amount').textContent = '-';
+            document.getElementById('summary-payment').textContent = '-';
+            document.getElementById('summary-total').textContent = 'Rp 0';
+            document.getElementById('checkout-btn').disabled = true;
+        }
+
+        function selectAmount(amount, element) {
+            // Reset active class
+            document.querySelectorAll('.amount-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // Set active class to selected amount
+            element.classList.add('active');
+            
+            // Update selected amount
+            selectedAmount = amount;
+            document.getElementById('summary-amount').textContent = `${amount.name} (Rp ${amount.price.toLocaleString()})`;
+            document.getElementById('summary-total').textContent = `Rp ${amount.price.toLocaleString()}`;
+            
+            // Enable checkout button if payment method is selected
+            if (selectedPayment) {
+                document.getElementById('checkout-btn').disabled = false;
+            }
+        }
+
+        function selectPayment(element, method) {
+            // Reset active class
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // Set active class to selected payment
+            element.classList.add('active');
+            
+            // Update selected payment
+            selectedPayment = method;
+            document.getElementById('summary-payment').textContent = method;
+            
+            // Enable checkout button if amount is selected
+            if (selectedAmount) {
+                document.getElementById('checkout-btn').disabled = false;
+            }
+        }
+
+        // Back to top functionality
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
             }
         });
-        
-        // Simulasi membuat thread baru
-        document.querySelector('.threads-header .btn-primary').addEventListener('click', function() {
-            alert('Fitur membuat thread baru memerlukan backend dan database untuk menyimpan data.');
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
         });
+
+        // Checkout button click
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            if (selectedGame && selectedAmount && selectedPayment) {
+                alert(`Terima kasih telah melakukan pemesanan!\n\nGame: ${selectedGame}\nNominal: ${selectedAmount.name}\nMetode Pembayaran: ${selectedPayment}\nTotal: Rp ${selectedAmount.price.toLocaleString()}\n\nProses pembayaran akan diarahkan ke halaman berikutnya.`);
+                // In a real implementation, this would redirect to payment gateway
+            }
+        });
+
+        // Initialize cart count
+        document.getElementById('cart-count').textContent = '0';
     </script>
 </body>
 </html>
